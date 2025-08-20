@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
+import { Input } from "@/components/ui/input"
 import { Loader2 } from "lucide-react"
 
 const evaluationData = {
@@ -518,6 +519,8 @@ interface EvaluationFormProps {
 
 export function EvaluationForm({ projectId, onSubmit, isLoading }: EvaluationFormProps) {
   const [formData, setFormData] = useState<Record<string, { rating: string; comment: string }>>({})
+  const [studentName, setStudentName] = useState("")
+  const [iterationNumber, setIterationNumber] = useState("")
 
   const questions = evaluationData[projectId as keyof typeof evaluationData] || []
 
@@ -552,11 +555,54 @@ export function EvaluationForm({ projectId, onSubmit, isLoading }: EvaluationFor
       evaluatorComment: question.comment,
     }))
 
-    onSubmit({ evaluations: evaluationResults })
+    onSubmit({
+      studentName,
+      iterationNumber,
+      evaluations: evaluationResults,
+    })
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      <Card className="border border-border bg-muted/20">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold text-card-foreground">Student Information</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="student-name" className="text-sm font-medium">
+                Student Name *
+              </Label>
+              <Input
+                id="student-name"
+                type="text"
+                placeholder="Enter student name"
+                value={studentName}
+                onChange={(e) => setStudentName(e.target.value)}
+                required
+                className="w-full"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="iteration-number" className="text-sm font-medium">
+                Iteration Number *
+              </Label>
+              <Input
+                id="iteration-number"
+                type="number"
+                placeholder="Enter iteration number"
+                value={iterationNumber}
+                onChange={(e) => setIterationNumber(e.target.value)}
+                required
+                min="1"
+                className="w-full"
+              />
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       {questions.map((question, questionIndex) => (
         <Card key={questionIndex} className="border border-border">
           <CardHeader>
