@@ -43,7 +43,20 @@ export default function Home() {
       })
 
       const result = await response.text()
-      setWebhookResponse(result)
+
+      try {
+        const jsonResponse = JSON.parse(result)
+        if (jsonResponse.output) {
+          // Parse escaped characters like \n and \"
+          const markdownContent = jsonResponse.output.replace(/\\n/g, "\n").replace(/\\"/g, '"').replace(/\\\\/g, "\\")
+          setWebhookResponse(markdownContent)
+        } else {
+          setWebhookResponse(result)
+        }
+      } catch (parseError) {
+        // If JSON parsing fails, use the raw response
+        setWebhookResponse(result)
+      }
     } catch (error) {
       setWebhookResponse(`Error: ${error instanceof Error ? error.message : "Unknown error occurred"}`)
     } finally {
