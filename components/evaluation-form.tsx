@@ -521,6 +521,7 @@ export function EvaluationForm({ projectId, onSubmit, isLoading }: EvaluationFor
   const [formData, setFormData] = useState<Record<string, { rating: string; comment: string }>>({})
   const [studentName, setStudentName] = useState("")
   const [iterationNumber, setIterationNumber] = useState("")
+  const [previousComments, setPreviousComments] = useState("")
 
   const questions = evaluationData[projectId as keyof typeof evaluationData] || []
 
@@ -558,6 +559,7 @@ export function EvaluationForm({ projectId, onSubmit, isLoading }: EvaluationFor
     onSubmit({
       studentName,
       iterationNumber,
+      previousComments: Number.parseInt(iterationNumber) > 1 ? previousComments : undefined,
       evaluations: evaluationResults,
     })
   }
@@ -600,6 +602,20 @@ export function EvaluationForm({ projectId, onSubmit, isLoading }: EvaluationFor
               />
             </div>
           </div>
+          {Number.parseInt(iterationNumber) > 1 && (
+            <div className="space-y-2 pt-4 border-t border-border">
+              <Label htmlFor="previous-comments" className="text-sm font-medium">
+                Comments from Previous Instructors
+              </Label>
+              <Textarea
+                id="previous-comments"
+                placeholder="Enter comments from previous instructors..."
+                value={previousComments}
+                onChange={(e) => setPreviousComments(e.target.value)}
+                className="min-h-[100px]"
+              />
+            </div>
+          )}
         </CardContent>
       </Card>
 
