@@ -10,22 +10,22 @@ import { ChevronDown, ChevronUp } from "lucide-react"
 const projects = [
   {
     id: "project1",
-    name: "AI Workflow Analysis",
+    name: "1. Diagram",
     description: "Evaluate AI integration in workflow processes",
   },
   {
     id: "project2",
-    name: "Chatbot Development",
+    name: "2. Chatbot",
     description: "Assess chatbot functionality and user experience",
   },
   {
     id: "project3",
-    name: "Automation Workflow",
+    name: "3. Automation Workflow",
     description: "Review automated feedback processing system",
   },
   {
     id: "project4",
-    name: "Landing Pages with AI-Generated Visuals",
+    name: "4. Landing Pages",
     description: "Evaluate landing pages with AI-generated visual content and business effectiveness",
   },
 ]
