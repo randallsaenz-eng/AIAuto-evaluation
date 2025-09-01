@@ -21,6 +21,11 @@ const projects = [
     name: "Automation Workflow",
     description: "Review automated feedback processing system",
   },
+  {
+    id: "project4",
+    name: "Landing Pages with AI-Generated Visuals",
+    description: "Evaluate landing pages with AI-generated visual content and business effectiveness",
+  },
 ]
 
 export default function Home() {

@@ -509,6 +509,206 @@ const evaluationData = {
         "This question measures the level of creativity and effort put into enhancing the project beyond the basic requirements.",
     },
   ],
+  project4: [
+    {
+      question: "Coverage of Two Cases",
+      prompt: "Were two distinct services implemented with complete and on-brief web pages for each?",
+      answers: [
+        {
+          status: "Excellent 🟢",
+          description:
+            "Two distinct services were implemented. Both web pages are complete and fully aligned with the project brief.",
+        },
+        {
+          status: "Good 🟡",
+          description: "Two services were implemented, but one of the pages is slightly under-scoped or incomplete.",
+        },
+        {
+          status: "Needs Improvement 🟠",
+          description: "Only one service is complete, and the second page is only partially developed.",
+        },
+        {
+          status: "Missing 🔴",
+          description: "Only one service was implemented, or none at all.",
+        },
+      ],
+      comment:
+        "This criterion checks for the completion of the core project requirement: creating content for two separate services.",
+    },
+    {
+      question: "Business Goal & CTA",
+      prompt: "Does each page have a clear business goal and a prominent, effective Call to Action (CTA)?",
+      answers: [
+        {
+          status: "Excellent 🟢",
+          description:
+            "Each page has a clear business goal, and the CTA is prominent, persuasive, and perfectly aligned with that goal.",
+        },
+        {
+          status: "Good 🟡",
+          description:
+            "The goal and CTA are mostly clear, but they could be stronger or better positioned on the page.",
+        },
+        {
+          status: "Needs Improvement 🟠",
+          description: "The business goal is vague, or the CTA is weak or unclear on at least one of the pages.",
+        },
+        {
+          status: "Missing 🔴",
+          description: "There is no clear goal or CTA on the pages.",
+        },
+      ],
+      comment:
+        "This criterion assesses the effectiveness of the pages in guiding users toward a specific business outcome.",
+    },
+    {
+      question: "Testimonial Section",
+      prompt: "Does each page include a credible and well-designed testimonial section?",
+      answers: [
+        {
+          status: "Excellent 🟢",
+          description:
+            "Each page includes a concise and credible testimonial block with 2-3 quotes that effectively build trust. Avatars and alt text are handled well.",
+        },
+        {
+          status: "Good 🟡",
+          description:
+            "Testimonial sections are present but feel generic or are slightly off-tone. There may be minor accessibility gaps.",
+        },
+        {
+          status: "Needs Improvement 🟠",
+          description: "The testimonial sections are thin (e.g., only one quote) or feel irrelevant to the content.",
+        },
+        {
+          status: "Missing 🔴",
+          description: "No testimonial section is included on the pages.",
+        },
+      ],
+      comment: "This criterion evaluates the use of social proof to enhance credibility and user trust.",
+    },
+    {
+      question: "AI-Generated Visuals",
+      prompt: "Are the AI-generated visuals relevant, professional, and well-integrated into the design?",
+      answers: [
+        {
+          status: "Excellent 🟢",
+          description:
+            "At least one relevant, professional AI-generated image is included on each page, enhancing clarity and visual appeal.",
+        },
+        {
+          status: "Good 🟡",
+          description:
+            "AI images are present but are somewhat generic or only loosely aligned with the page's content.",
+        },
+        {
+          status: "Needs Improvement 🟠",
+          description: "The images are low-quality, irrelevant, or distracting from the main content.",
+        },
+        {
+          status: "Missing 🔴",
+          description: "No AI-generated visuals were used on the pages.",
+        },
+      ],
+      comment: "This criterion checks for the effective and creative use of AI for visual content.",
+    },
+    {
+      question: "Professionalism & Usability",
+      prompt: "Are the pages professional, functional, and easy to use?",
+      answers: [
+        {
+          status: "Excellent 🟢",
+          description:
+            "The pages feel deployable. All CTAs, modals, and links work correctly. The copy is clean, flows are obvious, and basic accessibility standards are met.",
+        },
+        {
+          status: "Good 🟡",
+          description:
+            "The pages have minor issues such as typos, spacing problems, or a flaky link, but are overall usable.",
+        },
+        {
+          status: "Needs Improvement 🟠",
+          description: "There are multiple errors, broken links, or confusing user flows.",
+        },
+        {
+          status: "Missing 🔴",
+          description: "The pages are incomplete or non-functional.",
+        },
+      ],
+      comment: "This criterion assesses the technical quality and readiness of the final product.",
+    },
+    {
+      question: "Design & Layout",
+      prompt: "Is the design clean, with a clear hierarchy and consistent elements?",
+      answers: [
+        {
+          status: "Excellent 🟢",
+          description:
+            "The design has a clean hierarchy, consistent spacing and typography, and balanced sections. It reads like a professional business site.",
+        },
+        {
+          status: "Good 🟡",
+          description: "The pages are readable but need polish in spacing, alignment, or visual balance.",
+        },
+        {
+          status: "Needs Improvement 🟠",
+          description: "The design is either cluttered or too sparse, with an unclear hierarchy.",
+        },
+        {
+          status: "Missing 🔴",
+          description: "The pages have no usable structure.",
+        },
+      ],
+      comment: "This criterion evaluates the aesthetic quality and organizational structure of the web pages.",
+    },
+    {
+      question: "Submission Doc & Rationale",
+      prompt: "Does the submission document include the correct links and a clear rationale for each page?",
+      answers: [
+        {
+          status: "Excellent 🟢",
+          description:
+            "The Google Doc includes both links and a clear rationale of 3-5 sentences for each page, tying the design choices to the project goals.",
+        },
+        {
+          status: "Good 🟡",
+          description: "The document includes links and a basic rationale, but there are some gaps in clarity.",
+        },
+        {
+          status: "Needs Improvement 🟠",
+          description: "Links are present, but the rationale is thin or off-topic.",
+        },
+        {
+          status: "Missing 🔴",
+          description: "No Google Doc was submitted, or it is missing the links or rationales.",
+        },
+      ],
+      comment: "This criterion checks for the completeness and quality of the required documentation.",
+    },
+    {
+      question: "Creativity & Extras (Optional)",
+      prompt: "Were thoughtful and valuable creative extras or features included?",
+      answers: [
+        {
+          status: "Excellent 🟢",
+          description:
+            "Thoughtful extras, such as an FAQ section, pricing, multiple AI visual styles, or CTA experiments, were included and add value to the project.",
+        },
+        {
+          status: "Good 🟡",
+          description: "Some extras are present but are underdeveloped.",
+        },
+        {
+          status: "Needs Improvement 🟠",
+          description: "There was only a minimal attempt at including extras.",
+        },
+        {
+          status: "Missing 🔴",
+          description: "No extras were included (no penalty for this).",
+        },
+      ],
+      comment: "This is an optional criterion that recognizes extra effort and creativity.",
+    },
+  ],
 }
 
 interface EvaluationFormProps {
