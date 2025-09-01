@@ -1,9 +1,11 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ProjectTabs } from "@/components/project-tabs"
 import { EvaluationForm } from "@/components/evaluation-form"
 import { ResponseDisplay } from "@/components/response-display"
+import { Button } from "@/components/ui/button"
+import { ChevronDown, ChevronUp } from "lucide-react"
 
 const projects = [
   {
@@ -32,6 +34,39 @@ export default function Home() {
   const [activeProject, setActiveProject] = useState("project1")
   const [webhookResponse, setWebhookResponse] = useState<string>("")
   const [isLoading, setIsLoading] = useState(false)
+  const [showScrollToBottom, setShowScrollToBottom] = useState(false)
+  const [showScrollToTop, setShowScrollToTop] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+      const scrollHeight = document.documentElement.scrollHeight
+      const clientHeight = document.documentElement.clientHeight
+      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10
+
+      setShowScrollToTop(isAtBottom && scrollTop > 100)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  useEffect(() => {
+    if (webhookResponse) {
+      setShowScrollToBottom(true)
+      const timer = setTimeout(() => setShowScrollToBottom(false), 5000)
+      return () => clearTimeout(timer)
+    }
+  }, [webhookResponse])
+
+  const scrollToBottom = () => {
+    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "smooth" })
+    setShowScrollToBottom(false)
+  }
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
 
   const handleFormSubmit = async (formData: any) => {
     setIsLoading(true)
@@ -52,14 +87,12 @@ export default function Home() {
       try {
         const jsonResponse = JSON.parse(result)
         if (jsonResponse.output) {
-          // Parse escaped characters like \n and \"
           const markdownContent = jsonResponse.output.replace(/\\n/g, "\n").replace(/\\"/g, '"').replace(/\\\\/g, "\\")
           setWebhookResponse(markdownContent)
         } else {
           setWebhookResponse(result)
         }
       } catch (parseError) {
-        // If JSON parsing fails, use the raw response
         setWebhookResponse(result)
       }
     } catch (error) {
@@ -85,6 +118,26 @@ export default function Home() {
           {webhookResponse && <ResponseDisplay response={webhookResponse} onResponseChange={setWebhookResponse} />}
         </div>
       </div>
+
+      {showScrollToBottom && (
+        <Button
+          onClick={scrollToBottom}
+          className="fixed bottom-6 right-6 rounded-full w-12 h-12 shadow-lg z-50"
+          size="icon"
+        >
+          <ChevronDown className="h-5 w-5" />
+        </Button>
+      )}
+
+      {showScrollToTop && (
+        <Button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 rounded-full w-12 h-12 shadow-lg z-50"
+          size="icon"
+        >
+          <ChevronUp className="h-5 w-5" />
+        </Button>
+      )}
     </main>
   )
 }
