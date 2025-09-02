@@ -5,7 +5,7 @@ import { ProjectTabs } from "@/components/project-tabs"
 import { EvaluationForm } from "@/components/evaluation-form"
 import { ResponseDisplay } from "@/components/response-display"
 import { Button } from "@/components/ui/button"
-import { ChevronDown, ChevronUp } from "lucide-react"
+import { ChevronUp } from "lucide-react"
 
 const projects = [
   {
@@ -34,7 +34,6 @@ export default function Home() {
   const [activeProject, setActiveProject] = useState("project1")
   const [webhookResponse, setWebhookResponse] = useState<string>("")
   const [isLoading, setIsLoading] = useState(false)
-  const [showScrollToBottom, setShowScrollToBottom] = useState(false)
   const [showScrollToTop, setShowScrollToTop] = useState(false)
 
   useEffect(() => {
@@ -51,17 +50,8 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  useEffect(() => {
-    if (webhookResponse) {
-      setShowScrollToBottom(true)
-      const timer = setTimeout(() => setShowScrollToBottom(false), 5000)
-      return () => clearTimeout(timer)
-    }
-  }, [webhookResponse])
-
   const scrollToBottom = () => {
     window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "smooth" })
-    setShowScrollToBottom(false)
   }
 
   const scrollToTop = () => {
@@ -113,21 +103,17 @@ export default function Home() {
         <div className="space-y-8">
           <ProjectTabs projects={projects} activeProject={activeProject} onProjectChange={setActiveProject} />
 
-          <EvaluationForm projectId={activeProject} onSubmit={handleFormSubmit} isLoading={isLoading} />
+          <EvaluationForm
+            projectId={activeProject}
+            onSubmit={handleFormSubmit}
+            isLoading={isLoading}
+            onScrollToBottom={scrollToBottom}
+            hasResponse={!!webhookResponse}
+          />
 
           {webhookResponse && <ResponseDisplay response={webhookResponse} onResponseChange={setWebhookResponse} />}
         </div>
       </div>
-
-      {showScrollToBottom && (
-        <Button
-          onClick={scrollToBottom}
-          className="fixed bottom-6 right-6 rounded-full w-12 h-12 shadow-lg z-50"
-          size="icon"
-        >
-          <ChevronDown className="h-5 w-5" />
-        </Button>
-      )}
 
       {showScrollToTop && (
         <Button

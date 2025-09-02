@@ -1,6 +1,7 @@
 "use client"
 
 import type React from "react"
+import { ChevronDown } from "lucide-react"
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
@@ -715,9 +716,11 @@ interface EvaluationFormProps {
   projectId: string
   onSubmit: (data: any) => void
   isLoading: boolean
+  onScrollToBottom: () => void
+  hasResponse: boolean
 }
 
-export function EvaluationForm({ projectId, onSubmit, isLoading }: EvaluationFormProps) {
+export function EvaluationForm({ projectId, onSubmit, isLoading, onScrollToBottom, hasResponse }: EvaluationFormProps) {
   const [formData, setFormData] = useState<Record<string, { rating: string; comment: string }>>({})
   const [studentName, setStudentName] = useState("")
   const [iterationNumber, setIterationNumber] = useState("")
@@ -863,7 +866,7 @@ export function EvaluationForm({ projectId, onSubmit, isLoading }: EvaluationFor
         </Card>
       ))}
 
-      <div className="flex justify-center pt-6">
+      <div className="flex justify-center items-center gap-4 pt-6">
         <Button type="submit" size="lg" disabled={isLoading} className="min-w-[200px]">
           {isLoading ? (
             <>
@@ -874,6 +877,19 @@ export function EvaluationForm({ projectId, onSubmit, isLoading }: EvaluationFor
             "Submit Evaluation"
           )}
         </Button>
+
+        {hasResponse && (
+          <Button
+            type="button"
+            variant="outline"
+            size="lg"
+            onClick={onScrollToBottom}
+            className="flex items-center gap-2 bg-transparent"
+          >
+            <ChevronDown className="h-4 w-4" />
+            View Response
+          </Button>
+        )}
       </div>
     </form>
   )
