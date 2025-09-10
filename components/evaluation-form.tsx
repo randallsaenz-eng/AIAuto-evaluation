@@ -723,10 +723,22 @@ interface EvaluationFormProps {
 export function EvaluationForm({ projectId, onSubmit, isLoading, onScrollToBottom, hasResponse }: EvaluationFormProps) {
   const [formData, setFormData] = useState<Record<string, { rating: string; comment: string }>>({})
   const [studentName, setStudentName] = useState("")
+  const [studentEmail, setStudentEmail] = useState("")
   const [iterationNumber, setIterationNumber] = useState("")
+  const [reviewerName, setReviewerName] = useState("")
   const [previousComments, setPreviousComments] = useState("")
 
   const questions = evaluationData[projectId as keyof typeof evaluationData] || []
+
+  const getSprintNumber = (projectId: string) => {
+    const sprintMap: Record<string, string> = {
+      project1: "1",
+      project2: "2",
+      project3: "3",
+      project4: "4",
+    }
+    return sprintMap[projectId] || "1"
+  }
 
   const handleRatingChange = (questionIndex: number, rating: string) => {
     setFormData((prev) => ({
@@ -761,6 +773,9 @@ export function EvaluationForm({ projectId, onSubmit, isLoading, onScrollToBotto
 
     onSubmit({
       studentName,
+      studentEmail,
+      sprintNumber: getSprintNumber(projectId),
+      reviewerName,
       iterationNumber,
       previousComments: Number.parseInt(iterationNumber) > 1 ? previousComments : undefined,
       evaluations: evaluationResults,
@@ -790,6 +805,23 @@ export function EvaluationForm({ projectId, onSubmit, isLoading, onScrollToBotto
               />
             </div>
             <div className="space-y-2">
+              <Label htmlFor="student-email" className="text-sm font-medium">
+                Student Email *
+              </Label>
+              <Input
+                id="student-email"
+                type="email"
+                placeholder="Enter student email"
+                value={studentEmail}
+                onChange={(e) => setStudentEmail(e.target.value)}
+                required
+                className="w-full"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="space-y-2">
               <Label htmlFor="iteration-number" className="text-sm font-medium">
                 Iteration Number *
               </Label>
@@ -804,7 +836,38 @@ export function EvaluationForm({ projectId, onSubmit, isLoading, onScrollToBotto
                 className="w-full"
               />
             </div>
+            <div className="space-y-2">
+              <Label htmlFor="sprint-number" className="text-sm font-medium">
+                Sprint Number
+              </Label>
+              <Input
+                id="sprint-number"
+                type="text"
+                value={getSprintNumber(projectId)}
+                readOnly
+                className="w-full bg-muted"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="reviewer-name" className="text-sm font-medium">
+                Reviewer Name *
+              </Label>
+              <select
+                id="reviewer-name"
+                value={reviewerName}
+                onChange={(e) => setReviewerName(e.target.value)}
+                required
+                className="w-full h-10 px-3 py-2 text-sm bg-background border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+              >
+                <option value="">Select reviewer</option>
+                <option value="Randall">Randall</option>
+                <option value="Leo">Leo</option>
+                <option value="Rodrigo">Rodrigo</option>
+                <option value="Steve">Steve</option>
+              </select>
+            </div>
           </div>
+
           {Number.parseInt(iterationNumber) > 1 && (
             <div className="space-y-2 pt-4 border-t border-border">
               <Label htmlFor="previous-comments" className="text-sm font-medium">
