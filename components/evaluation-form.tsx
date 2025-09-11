@@ -727,6 +727,7 @@ export function EvaluationForm({ projectId, onSubmit, isLoading, onScrollToBotto
   const [iterationNumber, setIterationNumber] = useState("")
   const [reviewerName, setReviewerName] = useState("")
   const [previousComments, setPreviousComments] = useState("")
+  const [accessIssues, setAccessIssues] = useState(false)
 
   const questions = evaluationData[projectId as keyof typeof evaluationData] || []
 
@@ -778,6 +779,7 @@ export function EvaluationForm({ projectId, onSubmit, isLoading, onScrollToBotto
       reviewerName,
       iterationNumber,
       previousComments: Number.parseInt(iterationNumber) > 1 ? previousComments : undefined,
+      accessIssues,
       evaluations: evaluationResults,
     })
   }
@@ -866,6 +868,19 @@ export function EvaluationForm({ projectId, onSubmit, isLoading, onScrollToBotto
                 <option value="Steve">Steve</option>
               </select>
             </div>
+          </div>
+
+          <div className="flex items-center space-x-2 pt-2">
+            <input
+              type="checkbox"
+              id="access-issues"
+              checked={accessIssues}
+              onChange={(e) => setAccessIssues(e.target.checked)}
+              className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+            />
+            <Label htmlFor="access-issues" className="text-sm font-medium cursor-pointer">
+              Access Issues
+            </Label>
           </div>
 
           {Number.parseInt(iterationNumber) > 1 && (
