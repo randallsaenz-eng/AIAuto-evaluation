@@ -28,6 +28,11 @@ const projects = [
     name: "4. Landing Pages",
     description: "Evaluate landing pages with AI-generated visual content and business effectiveness",
   },
+  {
+    id: "project5",
+    name: "5. Weather Automation",
+    description: "Evaluate automated weather workflow with OpenWeather API, AI, and Gmail integration",
+  },
 ]
 
 export default function Home() {
@@ -98,7 +103,14 @@ export default function Home() {
         <header className="mb-8 text-center">
           <h1 className="text-3xl font-bold text-foreground mb-2">Project Evaluator</h1>
           <p className="text-muted-foreground">Select a project and complete the evaluation criteria</p>
-          <p>More Templates: <a href="https://www.notion.so/coding-bootcamps/AI-Automation-Review-Templates-2286ed1efc9380749352c310a50e2f8d" target="_blank"></a></p>
+          <p>
+            More Templates:{" "}
+            <a
+              href="https://www.notion.so/coding-bootcamps/AI-Automation-Review-Templates-2286ed1efc9380749352c310a50e2f8d"
+              target="_blank"
+              rel="noreferrer"
+            ></a>
+          </p>
         </header>
 
         <div className="space-y-8">

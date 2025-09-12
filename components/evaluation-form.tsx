@@ -710,6 +710,188 @@ const evaluationData = {
       comment: "This is an optional criterion that recognizes extra effort and creativity.",
     },
   ],
+  project5: [
+    {
+      question: "Automation Workflow Setup",
+      prompt: "Is the entire automation workflow fully functional from start to finish?",
+      answers: [
+        {
+          status: "Excellent 🟢",
+          description:
+            "The workflow runs fully automated from the schedule trigger through OpenWeather, Gemini, and finally to Gmail. All steps have been successfully tested with real data, and the weather information appears correctly in the email.",
+        },
+        {
+          status: "Good 🟡",
+          description:
+            "The workflow works overall but has small issues, such as the temperature not being mapped cleanly or inconsistent email formatting.",
+        },
+        {
+          status: "Needs Improvement 🟠",
+          description:
+            "The workflow is only partially working, and one or more steps fail or require manual fixing each time it runs.",
+        },
+        {
+          status: "Missing 🔴",
+          description: "There is no working workflow, or key steps are completely missing.",
+        },
+      ],
+      comment: "This question assesses the core functionality and reliability of the automated workflow.",
+    },
+    {
+      question: "OpenWeather API Integration",
+      prompt: "Is the OpenWeather API correctly integrated and used?",
+      answers: [
+        {
+          status: "Excellent 🟢",
+          description:
+            "The API key is set up correctly, tested in Postman, and properly mapped into Zapier. The student shows a clear understanding of the request URL and its parameters.",
+        },
+        {
+          status: "Good 🟡",
+          description:
+            "The API works in Zapier, but testing in Postman was skipped, or some parameters are not well-explained.",
+        },
+        {
+          status: "Needs Improvement 🟠",
+          description:
+            "The API call is unstable or incomplete, for example, using the wrong units or missing the description field.",
+        },
+        {
+          status: "Missing 🔴",
+          description: "No weather API was used, or the key is not working.",
+        },
+      ],
+      comment: "This question evaluates the technical skill in setting up and using an external API.",
+    },
+    {
+      question: "Prompt Design & AI Output",
+      prompt: "Is the AI prompt well-designed and does it produce the required output?",
+      answers: [
+        {
+          status: "Excellent 🟢",
+          description:
+            "The prompt is clear, concise, and consistently returns the three required outputs: product focus, staffing advice, and two promotional messages. The output is short and usable in the email.",
+        },
+        {
+          status: "Good 🟡",
+          description: "The prompt works most of the time, but it sometimes returns messy or inconsistent formatting.",
+        },
+        {
+          status: "Needs Improvement 🟠",
+          description:
+            "The prompt produces frequent errors, such as being too verbose, missing promos, or providing unclear advice.",
+        },
+        {
+          status: "Missing 🔴",
+          description: "No AI step was included, or the prompt does not generate relevant output.",
+        },
+      ],
+      comment: "This question checks the quality of the AI interaction and the usability of the generated content.",
+    },
+    {
+      question: "Email Delivery & Formatting",
+      prompt: "Is the final email delivered correctly and formatted professionally?",
+      answers: [
+        {
+          status: "Excellent 🟢",
+          description:
+            "The email sent to the manager is friendly, professional, and correctly displays the weather, AI outputs, and branding (subject line and body). It has been successfully tested in the inbox.",
+        },
+        {
+          status: "Good 🟡",
+          description:
+            "The email is sent, but the formatting is basic or slightly unclear, for example, all AI output is lumped into one block.",
+        },
+        {
+          status: "Needs Improvement 🟠",
+          description:
+            "The email is sent but is missing key details, such as the weather information or the promotional messages.",
+        },
+        {
+          status: "Missing 🔴",
+          description: "There is no email step, or the email fails to send.",
+        },
+      ],
+      comment: "This question evaluates the final output of the workflow and its presentation.",
+    },
+    {
+      question: "Clarity of Demo & Presentation",
+      prompt: "Is the project's presentation clear and well-documented?",
+      answers: [
+        {
+          status: "Excellent 🟢",
+          description:
+            "The presentation is polished and professional, including a workflow diagram, screenshots of Zapier steps, API requests, the prompt, and a sample email. It explains why this automation is helpful for a business in a location with fast-changing weather.",
+        },
+        {
+          status: "Good 🟡",
+          description:
+            "The presentation covers most parts but lacks some detail, such as no diagram or only partial screenshots.",
+        },
+        {
+          status: "Needs Improvement 🟠",
+          description:
+            "The presentation is minimal or unclear and is missing a key explanation of how the workflow helps the business.",
+        },
+        {
+          status: "Missing 🔴",
+          description: "No presentation was provided.",
+        },
+      ],
+      comment: "This question assesses the student's ability to explain and document their work clearly.",
+    },
+    {
+      question: "Optional: Severe Weather Alert ⚠️",
+      prompt: "Was a severe weather alert feature successfully implemented?",
+      answers: [
+        {
+          status: "Excellent 🟢",
+          description:
+            "An alert email is fully implemented and triggers correctly for conditions like high temperature (>91°F) or specific weather descriptions like 'storm' or 'rain.' The student explains its importance for coastal operations.",
+        },
+        {
+          status: "Good 🟡",
+          description:
+            "The alert is set up but has not been fully tested, or the conditions for triggering it are incomplete.",
+        },
+        {
+          status: "Needs Improvement 🟠",
+          description: "The alert step is added but is unreliable, either causing false positives or never triggering.",
+        },
+        {
+          status: "Missing 🔴",
+          description: "No alert logic was included.",
+        },
+      ],
+      comment:
+        "This is an optional criterion that acknowledges the implementation of a more advanced, situational feature.",
+    },
+    {
+      question: "Creativity & Extra Effort",
+      prompt: "Did the project include creative touches or extra effort?",
+      answers: [
+        {
+          status: "Excellent 🟢",
+          description:
+            "The project includes thoughtful touches like customized prompt wording, emojis in emails, extra filter conditions, or branded email formatting.",
+        },
+        {
+          status: "Good 🟡",
+          description: "Some creative elements were added but are limited or not fully functional.",
+        },
+        {
+          status: "Needs Improvement 🟠",
+          description: "There was only a minimal amount of creative effort beyond the base requirements.",
+        },
+        {
+          status: "Missing 🔴",
+          description: "There was no personalization or extra effort shown.",
+        },
+      ],
+      comment:
+        "This question measures the level of creativity and polish added to the project beyond the basic requirements.",
+    },
+  ],
 }
 
 interface EvaluationFormProps {
@@ -737,6 +919,7 @@ export function EvaluationForm({ projectId, onSubmit, isLoading, onScrollToBotto
       project2: "2",
       project3: "3",
       project4: "4",
+      project5: "5",
     }
     return sprintMap[projectId] || "1"
   }
