@@ -10,7 +10,6 @@ import { Textarea } from "@/components/ui/textarea"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
-import { Loader2 } from "lucide-react"
 
 const evaluationData = {
   project1: [
@@ -403,11 +402,11 @@ const evaluationData = {
         },
         {
           status: "Missing 🔴",
-          description: "No AI prompt was used, or the output is not parsed at all.",
+          description: "No AI step was included, or the prompt does not generate relevant output.",
         },
       ],
       comment:
-        "This question evaluates the quality of the AI interaction and the process of extracting data from the AI's response.",
+        "This question checks the quality of the AI interaction and the process of extracting data from the AI's response.",
     },
     {
       question: "Data Structure in Google Sheets",
@@ -450,14 +449,15 @@ const evaluationData = {
         },
         {
           status: "Needs Improvement 🟠",
-          description: "The documentation is minimal or unclear, and key screenshots or explanations are missing.",
+          description:
+            "The presentation is minimal or unclear and is missing a key explanation of how the workflow helps the business.",
         },
         {
           status: "Missing 🔴",
-          description: "No presentation or documentation was provided.",
+          description: "No presentation was provided.",
         },
       ],
-      comment: "This question assesses the quality of the project's explanation and presentation.",
+      comment: "This question assesses the student's ability to explain and document their work clearly.",
     },
     {
       question: "Optional: Email Alert for Negative Feedback",
@@ -471,18 +471,19 @@ const evaluationData = {
         {
           status: "Good 🟡",
           description:
-            "An alert is set up but has not been fully tested or has minor issues, such as triggering incorrectly.",
+            "The alert is set up but has not been fully tested, or the conditions for triggering it are incomplete.",
         },
         {
           status: "Needs Improvement 🟠",
-          description: "The alert is partially implemented but is unreliable.",
+          description: "The alert step is added but is unreliable, either causing false positives or never triggering.",
         },
         {
           status: "Missing 🔴",
           description: "No email alert was implemented.",
         },
       ],
-      comment: "This question evaluates the implementation of an optional but valuable feature.",
+      comment:
+        "This is an optional criterion that acknowledges the implementation of a more advanced, situational feature.",
     },
     {
       question: "Creativity",
@@ -499,7 +500,7 @@ const evaluationData = {
         },
         {
           status: "Needs Improvement 🟠",
-          description: "Minimal or unfinished extra elements were included.",
+          description: "There was only a minimal amount of creative effort beyond the base requirements.",
         },
         {
           status: "Missing 🔴",
@@ -885,7 +886,7 @@ const evaluationData = {
         },
         {
           status: "Missing 🔴",
-          description: "There was no personalization or extra effort shown.",
+          description: "No personalization or extra effort shown.",
         },
       ],
       comment:
@@ -898,11 +899,10 @@ interface EvaluationFormProps {
   projectId: string
   onSubmit: (data: any) => void
   isLoading: boolean
-  onScrollToBottom: () => void
-  hasResponse: boolean
+  showScrollToBottom: boolean
 }
 
-export function EvaluationForm({ projectId, onSubmit, isLoading, onScrollToBottom, hasResponse }: EvaluationFormProps) {
+export default function EvaluationForm({ projectId, onSubmit, showScrollToBottom }: EvaluationFormProps) {
   const [formData, setFormData] = useState<Record<string, { rating: string; comment: string }>>({})
   const [studentName, setStudentName] = useState("")
   const [studentEmail, setStudentEmail] = useState("")
@@ -910,6 +910,7 @@ export function EvaluationForm({ projectId, onSubmit, isLoading, onScrollToBotto
   const [reviewerName, setReviewerName] = useState("")
   const [previousComments, setPreviousComments] = useState("")
   const [accessIssues, setAccessIssues] = useState(false)
+  const [specialCase, setSpecialCase] = useState(false)
 
   const questions = evaluationData[projectId as keyof typeof evaluationData] || []
 
@@ -944,27 +945,28 @@ export function EvaluationForm({ projectId, onSubmit, isLoading, onScrollToBotto
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    const evaluationResults = questions.map((question, index) => ({
-      question: question.question,
-      prompt: question.prompt,
-      rating: formData[index]?.rating || "",
-      comment: formData[index]?.comment || "",
-      evaluatorComment: question.comment,
-    }))
+    const responses = Object.values(formData).map((item) => item.rating)
 
-    onSubmit({
+    const formDataToSubmit = {
       studentName,
       studentEmail,
+      iterationNumber,
       sprintNumber: getSprintNumber(projectId),
       reviewerName,
-      iterationNumber,
-      previousComments: Number.parseInt(iterationNumber) > 1 ? previousComments : undefined,
       accessIssues,
-      evaluations: evaluationResults,
-    })
+      specialCase,
+      previousComments: Number.parseInt(iterationNumber) > 1 ? previousComments : "",
+      evaluations: responses.map((response, index) => ({
+        question: questions[index]?.question || "",
+        answer: response,
+        comment: questions[index]?.comment || "",
+      })),
+    }
+
+    onSubmit(formDataToSubmit)
   }
 
   return (
@@ -1066,6 +1068,19 @@ export function EvaluationForm({ projectId, onSubmit, isLoading, onScrollToBotto
             </Label>
           </div>
 
+          <div className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              id="special-case"
+              checked={specialCase}
+              onChange={(e) => setSpecialCase(e.target.checked)}
+              className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+            />
+            <Label htmlFor="special-case" className="text-sm font-medium cursor-pointer">
+              Special Case
+            </Label>
+          </div>
+
           {Number.parseInt(iterationNumber) > 1 && (
             <div className="space-y-2 pt-4 border-t border-border">
               <Label htmlFor="previous-comments" className="text-sm font-medium">
@@ -1128,23 +1143,16 @@ export function EvaluationForm({ projectId, onSubmit, isLoading, onScrollToBotto
       ))}
 
       <div className="flex justify-center items-center gap-4 pt-6">
-        <Button type="submit" size="lg" disabled={isLoading} className="min-w-[200px]">
-          {isLoading ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Submitting...
-            </>
-          ) : (
-            "Submit Evaluation"
-          )}
+        <Button type="submit" size="lg" disabled={false} className="min-w-[200px]">
+          Submit Evaluation
         </Button>
 
-        {hasResponse && (
+        {showScrollToBottom && (
           <Button
             type="button"
             variant="outline"
             size="lg"
-            onClick={onScrollToBottom}
+            onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" })}
             className="flex items-center gap-2 bg-transparent"
           >
             <ChevronDown className="h-4 w-4" />

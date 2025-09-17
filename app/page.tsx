@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { ProjectTabs } from "@/components/project-tabs"
-import { EvaluationForm } from "@/components/evaluation-form"
+import EvaluationForm from "@/components/evaluation-form"
 import { ResponseDisplay } from "@/components/response-display"
 import { Button } from "@/components/ui/button"
 import { ChevronUp } from "lucide-react"
@@ -120,8 +120,7 @@ export default function Home() {
             projectId={activeProject}
             onSubmit={handleFormSubmit}
             isLoading={isLoading}
-            onScrollToBottom={scrollToBottom}
-            hasResponse={!!webhookResponse}
+            showScrollToBottom={!!webhookResponse}
           />
 
           {webhookResponse && <ResponseDisplay response={webhookResponse} onResponseChange={setWebhookResponse} />}
