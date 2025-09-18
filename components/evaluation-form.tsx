@@ -902,7 +902,7 @@ interface EvaluationFormProps {
   showScrollToBottom: boolean
 }
 
-export default function EvaluationForm({ projectId, onSubmit, showScrollToBottom }: EvaluationFormProps) {
+export default function EvaluationForm({ projectId, onSubmit, isLoading, showScrollToBottom }: EvaluationFormProps) {
   const [formData, setFormData] = useState<Record<string, { rating: string; comment: string }>>({})
   const [studentName, setStudentName] = useState("")
   const [studentEmail, setStudentEmail] = useState("")
@@ -1143,17 +1143,21 @@ export default function EvaluationForm({ projectId, onSubmit, showScrollToBottom
       ))}
 
       <div className="flex justify-center items-center gap-4 pt-6">
-        <Button type="submit" size="lg" disabled={false} className="min-w-[200px]">
-          Submit Evaluation
+        <Button type="submit" size="lg" disabled={isLoading} className="min-w-[200px] flex items-center gap-2">
+          {isLoading && (
+            <div className="animate-spin rounded-full h-4 w-4 border-2 border-background border-t-transparent" />
+          )}
+          {isLoading ? "Submitting..." : "Submit Evaluation"}
         </Button>
-
         {showScrollToBottom && (
           <Button
             type="button"
             variant="outline"
             size="lg"
-            onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" })}
-            className="flex items-center gap-2 bg-transparent"
+            onClick={() => {
+              window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "smooth" })
+            }}
+            className="flex items-center gap-2"
           >
             <ChevronDown className="h-4 w-4" />
             View Response
