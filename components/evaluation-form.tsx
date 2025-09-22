@@ -961,6 +961,7 @@ export default function EvaluationForm({ projectId, onSubmit, isLoading, showScr
       previousComments: Number.parseInt(iterationNumber) > 1 ? previousComments : "",
       evaluations: responses.map((response, index) => ({
         question: questions[index]?.question || "",
+        prompt: questions[index]?.comment || "",
         answer: response,
         comment: formData[index]?.comment || "",
       })),
