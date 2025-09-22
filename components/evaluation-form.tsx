@@ -962,7 +962,7 @@ export default function EvaluationForm({ projectId, onSubmit, isLoading, showScr
       evaluations: responses.map((response, index) => ({
         question: questions[index]?.question || "",
         answer: response,
-        comment: questions[index]?.comment || "",
+        comment: formData[index]?.comment || "",
       })),
     }
 
