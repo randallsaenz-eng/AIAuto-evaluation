@@ -893,6 +893,146 @@ const evaluationData = {
         "This question measures the level of creativity and polish added to the project beyond the basic requirements.",
     },
   ],
+  project6: [
+  {
+    question: "Workflow Setup",
+    prompt: "Is the workflow fully automated and functional?",
+    answers: [
+      {
+        status: "Excellent 🟢",
+        description: "The workflow fully automates reading invoices, extracting fields, generating purchase descriptions, and writing to Google Sheets. It also includes a confidence check."
+      },
+      {
+        status: "Good 🟡",
+        description: "The workflow works overall, but some steps are manual or incomplete."
+      },
+      {
+        status: "Needs Improvement 🟠",
+        description: "The workflow only partially works, with key steps missing or failing."
+      },
+      {
+        status: "Missing 🔴",
+        description: "No working workflow was provided."
+      }
+    ],
+    comment: "This criterion evaluates the overall functionality and completeness of the automated process."
+  },
+  {
+    question: "Document Understanding",
+    prompt: "Were all required fields extracted correctly from the documents?",
+    answers: [
+      {
+        status: "Excellent 🟢",
+        description: "All four required fields—invoice number, supplier, due date, and total amount—were extracted correctly."
+      },
+      {
+        status: "Good 🟡",
+        description: "Most fields were extracted correctly, with only minor errors."
+      },
+      {
+        status: "Needs Improvement 🟠",
+        description: "Fields were extracted inconsistently, with frequent errors."
+      },
+      {
+        status: "Missing 🔴",
+        description: "Document Understanding was not used."
+      }
+    ],
+    comment: "This criterion assesses the accuracy of the document data extraction process."
+  },
+  {
+    question: "AI Description",
+    prompt: "Does the AI prompt consistently produce a useful purchase description?",
+    answers: [
+      {
+        status: "Excellent 🟢",
+        description: "The prompt consistently produces short, clear, and useful purchase descriptions for every invoice."
+      },
+      {
+        status: "Good 🟡",
+        description: "The prompt works, but the outputs are sometimes too vague or too long."
+      },
+      {
+        status: "Needs Improvement 🟠",
+        description: "The prompt produces poor or irrelevant descriptions."
+      },
+      {
+        status: "Missing 🔴",
+        description: "No AI step was included for the purchase description."
+      }
+    ],
+    comment: "This criterion evaluates the effectiveness and consistency of the AI-generated content."
+  },
+  {
+    question: "Google Sheets Integration",
+    prompt: "Is the data correctly populated in the Google Sheet?",
+    answers: [
+      {
+        status: "Excellent 🟢",
+        description: "The Google Sheet contains all five required columns and correct data for at least four out of six invoices."
+      },
+      {
+        status: "Good 🟡",
+        description: "The Sheet is mostly correct but is missing some data or has minor formatting issues."
+      },
+      {
+        status: "Needs Improvement 🟠",
+        description: "The Sheet is incomplete or is missing key fields."
+      },
+      {
+        status: "Missing 🔴",
+        description: "No Google Sheets step was included."
+      }
+    ],
+    comment: "This criterion checks the accuracy and completeness of the final data output."
+  },
+  {
+    question: "Confidence Check",
+    prompt: "Was a confidence check correctly implemented?",
+    answers: [
+      {
+        "status": "Excellent 🟢",
+        "description": "A confidence check was correctly implemented, logging warnings for any invoice number with a confidence score below 0.7."
+      },
+      {
+        "status": "Good 🟡",
+        "description": "The check was included but was either not tested or the implementation was unclear."
+      },
+      {
+        "status": "Needs Improvement 🟠",
+        "description": "The confidence check is unreliable or was incorrectly implemented."
+      },
+      {
+        "status": "Missing 🔴",
+        "description": "No confidence check was implemented."
+      }
+    ],
+    comment: "This criterion evaluates the implementation of a conditional logic feature to handle potential errors."
+  },
+  {
+    question: "Presentation",
+    prompt: "Is the presentation clear and well-documented?",
+    answers: [
+      {
+        status: "Excellent 🟢",
+        description: "The presentation consists of clear, professional slides with screenshots, explanations, and a reflection on the project."
+      },
+      {
+        status: "Good 🟡",
+        description: "The presentation covers most points but is missing some details."
+      },
+      {
+        status: "Needs Improvement 🟠",
+        description: "The presentation is minimal or the explanations are unclear."
+      },
+      {
+        status: "Missing 🔴",
+        description: "No presentation was submitted."
+      }
+    ],
+    comment: "This criterion assesses the quality of the project's documentation and explanation."
+  }
+]
 }
 
 interface EvaluationFormProps {
@@ -921,6 +1061,7 @@ export default function EvaluationForm({ projectId, onSubmit, isLoading, showScr
       project3: "3",
       project4: "4",
       project5: "5",
+      project6: "6"
     }
     return sprintMap[projectId] || "1"
   }

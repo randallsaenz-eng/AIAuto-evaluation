@@ -33,6 +33,11 @@ const projects = [
     name: "5. Weather Automation",
     description: "Evaluate automated weather workflow with OpenWeather API, AI, and Gmail integration",
   },
+  {
+    id: "project6",
+    name: "6. Invoice Report",
+    description: "Evaluate UiPath and Invoice recognition",
+  },
 ]
 
 export default function Home() {
@@ -103,7 +108,7 @@ export default function Home() {
         <header className="mb-8 text-center">
           <h1 className="text-3xl font-bold text-foreground mb-2">Project Evaluator</h1>
           <p className="text-muted-foreground">Select a project and complete the evaluation criteria</p>
-          <button class="btn btn-blue">
+          <button class="bg-primary btn btn-blue">
              <a 
               href="https://www.notion.so/coding-bootcamps/AI-Automation-Review-Templates-2286ed1efc9380749352c310a50e2f8d"
               target="_blank"
