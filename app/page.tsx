@@ -20,23 +20,23 @@ const projects = [
   },
   {
     id: "project3",
-    name: "3. Automation Workflow",
+    name: "3. Feedback",
     description: "Review automated feedback processing system",
   },
   {
     id: "project4",
-    name: "4. Landing Pages",
+    name: "4. Landing",
     description: "Evaluate landing pages with AI-generated visual content and business effectiveness",
   },
   {
     id: "project5",
-    name: "5. Weather Automation",
+    name: "5. Weather",
     description: "Evaluate automated weather workflow with OpenWeather API, AI, and Gmail integration",
   },
   {
     id: "project6",
-    name: "6. Invoice Report",
-    description: "Evaluate UiPath and Invoice recognition",
+    name: "6. Invoices",
+    description: "Evaluate UiPath and invoice recognition",
   },
 ]
 
@@ -106,16 +106,20 @@ export default function Home() {
     <main className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <header className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-foreground mb-2">Project Evaluator</h1>
-          <p className="text-muted-foreground">Select a project and complete the evaluation criteria</p>
-          <button class="bg-primary btn btn-blue">
-             <a 
+          <h1 className="text-headline-large font-medium text-foreground mb-4">Project Evaluator</h1>
+          <p className="text-body-large text-muted-foreground mb-6">
+            Select a project and complete the evaluation criteria
+          </p>
+          <Button variant="outline" asChild>
+            <a
               href="https://www.notion.so/coding-bootcamps/AI-Automation-Review-Templates-2286ed1efc9380749352c310a50e2f8d"
               target="_blank"
               rel="noreferrer"
-            >More Templates</a>
-            
-          </button>
+              className="text-label-large"
+            >
+              More Templates
+            </a>
+          </Button>
         </header>
 
         <div className="space-y-8">
@@ -135,7 +139,7 @@ export default function Home() {
       {showScrollToTop && (
         <Button
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 rounded-full w-12 h-12 shadow-lg z-50"
+          className="fixed bottom-6 right-6 rounded-full w-12 h-12 shadow-elevation-3 z-50"
           size="icon"
         >
           <ChevronUp className="h-5 w-5" />

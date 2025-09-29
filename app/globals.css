@@ -4,76 +4,105 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Updated color tokens to match minimalist design brief */
-  --background: #ffffff;
-  --foreground: #4b5563;
-  --card: #f9fafb;
-  --card-foreground: #4b5563;
-  --popover: #0891b2;
-  --popover-foreground: #ffffff;
-  --primary: #0891b2;
+  /* Material 3 Color System - Light Theme */
+  --background: #fefbff;
+  --foreground: #1d1b20;
+  --card: #ffffff;
+  --card-foreground: #1d1b20;
+  --popover: #ffffff;
+  --popover-foreground: #1d1b20;
+  --primary: #0066cc;
   --primary-foreground: #ffffff;
-  --secondary: #f9fafb;
-  --secondary-foreground: #4b5563;
-  --muted: #f9fafb;
-  --muted-foreground: #4b5563;
-  --accent: #f59e0b;
-  --accent-foreground: #4b5563;
-  --destructive: #dc2626;
+  --secondary: #f3f0f4;
+  --secondary-foreground: #1d1b20;
+  --muted: #f7f2fa;
+  --muted-foreground: #49454f;
+  --accent: #e8def8;
+  --accent-foreground: #1d1b20;
+  --destructive: #ba1a1a;
   --destructive-foreground: #ffffff;
-  --border: #e5e7eb;
+  --border: #cac4d0;
   --input: #ffffff;
-  --ring: #60a5fa;
-  --chart-1: #3b82f6;
-  --chart-2: #f59e0b;
-  --chart-3: #10b981;
-  --chart-4: #ef4444;
-  --chart-5: #6366f1;
-  --radius: 0.25rem;
-  --sidebar: #f9fafb;
-  --sidebar-foreground: #4b5563;
-  --sidebar-primary: #ffffff;
-  --sidebar-primary-foreground: #4b5563;
-  --sidebar-accent: #f59e0b;
-  --sidebar-accent-foreground: #4b5563;
-  --sidebar-border: #e5e7eb;
-  --sidebar-ring: #60a5fa;
+  --ring: #0066cc;
+  --chart-1: #0066cc;
+  --chart-2: #7c4dff;
+  --chart-3: #00c853;
+  --chart-4: #ff5722;
+  --chart-5: #ff9800;
+  --radius: 12px;
+  --sidebar: #f7f2fa;
+  --sidebar-foreground: #1d1b20;
+  --sidebar-primary: #0066cc;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e8def8;
+  --sidebar-accent-foreground: #1d1b20;
+  --sidebar-border: #cac4d0;
+  --sidebar-ring: #0066cc;
+
+  /* Material 3 Surface Colors */
+  --surface: #fefbff;
+  --surface-dim: #ded8e1;
+  --surface-bright: #fefbff;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f7f2fa;
+  --surface-container: #f3edf7;
+  --surface-container-high: #ede6f0;
+  --surface-container-highest: #e6e0e9;
+  --on-surface: #1d1b20;
+  --on-surface-variant: #49454f;
+  --outline: #79747e;
+  --outline-variant: #cac4d0;
 }
 
 .dark {
-  --background: #1f2937;
-  --foreground: #f9fafb;
-  --card: #374151;
-  --card-foreground: #f9fafb;
-  --popover: #0891b2;
-  --popover-foreground: #ffffff;
-  --primary: #0891b2;
-  --primary-foreground: #ffffff;
-  --secondary: #374151;
-  --secondary-foreground: #f9fafb;
-  --muted: #374151;
-  --muted-foreground: #9ca3af;
-  --accent: #f59e0b;
-  --accent-foreground: #1f2937;
-  --destructive: #dc2626;
-  --destructive-foreground: #ffffff;
-  --border: #4b5563;
-  --input: #374151;
-  --ring: #60a5fa;
-  --chart-1: #3b82f6;
-  --chart-2: #f59e0b;
-  --chart-3: #10b981;
-  --chart-4: #ef4444;
-  --chart-5: #6366f1;
-  --radius: 0.25rem;
-  --sidebar: #374151;
-  --sidebar-foreground: #f9fafb;
-  --sidebar-primary: #f9fafb;
-  --sidebar-primary-foreground: #1f2937;
-  --sidebar-accent: #f59e0b;
-  --sidebar-accent-foreground: #1f2937;
-  --sidebar-border: #4b5563;
-  --sidebar-ring: #60a5fa;
+  /* Material 3 Color System - Dark Theme */
+  --background: #141218;
+  --foreground: #e6e0e9;
+  --card: #1d1b20;
+  --card-foreground: #e6e0e9;
+  --popover: #1d1b20;
+  --popover-foreground: #e6e0e9;
+  --primary: #4285f4;
+  --primary-foreground: #000000;
+  --secondary: #2d2b30;
+  --secondary-foreground: #e6e0e9;
+  --muted: #1d1b20;
+  --muted-foreground: #938f99;
+  --accent: #4a4458;
+  --accent-foreground: #e6e0e9;
+  --destructive: #ffb4ab;
+  --destructive-foreground: #690005;
+  --border: #49454f;
+  --input: #1d1b20;
+  --ring: #4285f4;
+  --chart-1: #4285f4;
+  --chart-2: #bb86fc;
+  --chart-3: #03dac6;
+  --chart-4: #cf6679;
+  --chart-5: #ffb74d;
+  --radius: 12px;
+  --sidebar: #1d1b20;
+  --sidebar-foreground: #e6e0e9;
+  --sidebar-primary: #4285f4;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #4a4458;
+  --sidebar-accent-foreground: #e6e0e9;
+  --sidebar-border: #49454f;
+  --sidebar-ring: #4285f4;
+
+  /* Material 3 Surface Colors - Dark */
+  --surface: #141218;
+  --surface-dim: #141218;
+  --surface-bright: #3b383e;
+  --surface-container-lowest: #0f0d13;
+  --surface-container-low: #1d1b20;
+  --surface-container: #211f26;
+  --surface-container-high: #2b2930;
+  --surface-container-highest: #36343b;
+  --on-surface: #e6e0e9;
+  --on-surface-variant: #cac4d0;
+  --outline: #938f99;
+  --outline-variant: #49454f;
 }
 
 @theme inline {
@@ -113,6 +142,20 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Material 3 Surface Tokens */
+  --color-surface: var(--surface);
+  --color-surface-dim: var(--surface-dim);
+  --color-surface-bright: var(--surface-bright);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
 }
 
 @layer base {
@@ -120,6 +163,130 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Material 3 Typography Scale */
+  .text-display-large {
+    font-size: 57px;
+    line-height: 64px;
+    font-weight: 400;
+    letter-spacing: -0.25px;
+  }
+
+  .text-display-medium {
+    font-size: 45px;
+    line-height: 52px;
+    font-weight: 400;
+  }
+
+  .text-display-small {
+    font-size: 36px;
+    line-height: 44px;
+    font-weight: 400;
+  }
+
+  .text-headline-large {
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 400;
+  }
+
+  .text-headline-medium {
+    font-size: 28px;
+    line-height: 36px;
+    font-weight: 400;
+  }
+
+  .text-headline-small {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 400;
+  }
+
+  .text-title-large {
+    font-size: 22px;
+    line-height: 28px;
+    font-weight: 400;
+  }
+
+  .text-title-medium {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    letter-spacing: 0.15px;
+  }
+
+  .text-title-small {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+  }
+
+  .text-label-large {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+  }
+
+  .text-label-medium {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  .text-label-small {
+    font-size: 11px;
+    line-height: 16px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  .text-body-large {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    letter-spacing: 0.15px;
+  }
+
+  .text-body-medium {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    letter-spacing: 0.25px;
+  }
+
+  .text-body-small {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
+    letter-spacing: 0.4px;
+  }
+}
+
+/* Material 3 Elevation Shadows */
+@layer utilities {
+  .shadow-elevation-1 {
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  }
+
+  .shadow-elevation-2 {
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  }
+
+  .shadow-elevation-3 {
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.3), 0px 4px 8px 3px rgba(0, 0, 0, 0.15);
+  }
+
+  .shadow-elevation-4 {
+    box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 6px 10px 4px rgba(0, 0, 0, 0.15);
+  }
+
+  .shadow-elevation-5 {
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.3), 0px 8px 12px 6px rgba(0, 0, 0, 0.15);
   }
 }

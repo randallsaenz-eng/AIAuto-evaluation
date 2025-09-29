@@ -1,12 +1,19 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { DM_Sans } from "next/font/google"
+import { Roboto, Roboto_Mono } from "next/font/google"
 import "./globals.css"
 
-const dmSans = DM_Sans({
+const roboto = Roboto({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-dm-sans",
+  variable: "--font-roboto",
+  weight: ["300", "400", "500", "700"],
+})
+
+const robotoMono = Roboto_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-roboto-mono",
 })
 
 export const metadata: Metadata = {
@@ -21,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${dmSans.variable} antialiased`}>
+    <html lang="en" className={`${roboto.variable} ${robotoMono.variable} antialiased`}>
       <body className="font-sans">{children}</body>
     </html>
   )
