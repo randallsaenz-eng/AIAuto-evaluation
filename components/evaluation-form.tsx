@@ -1197,6 +1197,7 @@ export default function EvaluationForm({ projectId, onSubmit, isLoading, showScr
                 <option value="">Select reviewer</option>
                 <option value="Randall">Randall</option>
                 <option value="Leo">Leo</option>
+                <option value="Fausto">Fausto</option>
                 <option value="Rodrigo">Rodrigo</option>
                 <option value="Steve">Steve</option>
               </select>
