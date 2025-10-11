@@ -71,7 +71,7 @@ export default function Home() {
   const handleFormSubmit = async (formData: any) => {
     setIsLoading(true)
     try {
-      const response = await fetch("https://n8n.smosgasbord.xyz/webhook/39e45b9b-6134-4ea0-975b-595120ef75ba", {
+      const response = await fetch("https://n.smosgasbord.xyz/webhook/39e45b9b-6134-4ea0-975b-595120ef75ba", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
